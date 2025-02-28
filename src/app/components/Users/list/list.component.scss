@@ -1,0 +1,93 @@
+@use "../../../../assets/colors.scss" as *;
+
+.list-wrapper {
+  padding: 16px;
+  display:flex;
+  justify-content: center;
+
+  .card-list {
+    gap: 5px;
+    display: grid;
+    padding: 16px;
+    width: 30%;
+
+    .user-card {
+      width: 100%;
+      padding: 8px 16px;
+      border-radius: 8px;
+      box-shadow: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      border: solid 2px $teal-50;
+
+      &:hover {
+        background-color: $teal-20;
+        cursor: pointer;
+
+        button {
+          visibility: visible; /* Hacer visible el botón cuando el ratón esté sobre .user-card */
+          color: $teal-400;
+        }
+      }
+
+      .user-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .avatar {
+          display: flex;
+
+          img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: solid 4px $teal-50;
+            padding: 1px;
+          }
+        }
+
+        .user-info {
+          display: flex;
+          flex-direction: column;
+
+          h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    button {
+      background: $teal-20;
+      border-radius: 8px;
+
+      mat-icon {
+        color: $teal-300;
+        font-size: 22px;
+        width: 22px;
+        height: 22px;
+      }
+    }
+  }
+
+  // Media Queries
+  /* (móviles) */
+  @media (max-width: 767px) {
+    // (Móviles)
+    .card-list {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    // (Tablets)
+    .card-list {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,102 @@
+@use "../../../../assets/colors.scss" as *;
+
+.data-user-wrapper {
+  padding: 16px;
+  display:flex;
+  justify-content: center;
+
+  .user-card {
+    width: 30%;
+    height: 450px;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: none;
+    border: 2px solid $teal-50;
+    display: flex;
+    justify-content: space-between;
+
+    mat-card-header {
+      padding: 0;
+      display: flex;
+      flex-direction: row-reverse;
+
+      button{
+
+        mat-icon {
+          color: $teal-300
+        }
+
+        &:hover {
+          background-color: $teal-20;
+        }
+      }
+
+    }
+
+    .avatar-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+
+      .avatar {
+        width: 115px;
+        height: 115px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 8px solid $teal-50;
+      }
+    }
+
+    .user-info {
+      .user-name {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        color: $neutral-900;
+      }
+
+      .user-email {
+        font-size: 13px;
+        text-decoration: none;
+        display: block;
+        margin-top: 6px;
+        color: $neutral-800;
+      }
+    }
+
+    .btn-edit {
+      border-radius: 8px;
+      border: solid 2px $teal-50;
+      color: $teal-300;
+      width: 100%;
+      font-weight: 600;
+      font-size: 14px;
+
+      mat-icon {
+        color: $teal-300;
+      }
+
+      &:hover {
+        background-color: $teal-20;
+      }
+    }
+  }
+
+    // Media Queries
+  /* (móviles) */
+  @media (max-width: 767px) {
+    // (Móviles)
+    .user-card {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    // (Tablets)
+    .user-card {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<div class="list-wrapper">
+  <div class="card-list">
+    <mat-card
+      class="user-card"
+      *ngFor="let user of users"
+      [routerLink]="['/user-data', user.id]"
+    >
+      <div class="user-container">
+        <div class="avatar">
+          <img [src]="user.avatar" />
+        </div>
+        <div class="user-info">
+          <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        </div>
+      </div>
+    </mat-card>
+    <button [routerLink]="['/new-user']" mat-button>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

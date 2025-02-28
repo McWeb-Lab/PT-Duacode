@@ -1,17 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserData } from '../models/user-model';
 
 // Servicio para el CRUD con la API
-
-// Interface con los datos del usuario
-export interface UserData {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +14,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<any> {
+  getUsers(): Observable<UserData[]> {
     return this.http.get<any>(`${this.apiUrl}`);
   }
 
@@ -38,7 +30,7 @@ export class UserService {
     return this.http.put<UserData>(`${this.apiUrl}/${id}`, user);
   }
 
-  deleteUser(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
