@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserData } from '../models/user-model';
 
 // Servicio para el CRUD con la API
@@ -11,6 +11,8 @@ import { UserData } from '../models/user-model';
 export class UserService {
   // URL base de la API
   private apiUrl = 'https://reqres.in/api/users';
+  private usersSubject = new BehaviorSubject<any[]>([]);
+  users$ = this.usersSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 

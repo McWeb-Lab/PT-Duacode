@@ -29,6 +29,9 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllUsers();
+    this._userService.users$.subscribe(users => {
+      this.users = users;
+    });
   }
 
   getAllUsers(): void {
@@ -47,6 +50,6 @@ export class ListComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, {duration: 3000});
   }
 }

@@ -2,12 +2,11 @@
 
 @include mat-core();
 
-
 // GAMA COLORES
 $my-primary-color: (
-  200 : #80a1ac,
-  500 : #004358,
-  700 : #003447,
+  200 : #8fc5b8,
+  500 : #1f8a70,
+  700 : #17775d,
   contrast: (
     200 : #000000,
     500 : #ffffff,
@@ -16,9 +15,9 @@ $my-primary-color: (
 );
 
 $my-accent-color: (
-  200 : #8fc5b8,
-  500 : #1f8a70,
-  700 : #17775d,
+  200 : #80a1ac,
+  500 : #004358,
+  700 : #003447,
   contrast: (
     200 : #000000,
     500 : #ffffff,

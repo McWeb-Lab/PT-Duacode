@@ -1,0 +1,162 @@
+@use "../../../../assets/colors.scss" as *;
+
+.data-user-wrapper {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+
+  .user-card {
+    width: 30%;
+    height: 450px;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: none;
+    border: 2px solid $teal-50;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    mat-card-header {
+      padding: 0;
+      display: flex;
+      flex-direction: row-reverse;
+
+      button {
+        mat-icon {
+          color: $teal-600;
+        }
+
+        &:hover {
+          background-color: $teal-20;
+        }
+      }
+    }
+
+    .avatar-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+
+      .avatar-wrapper {
+        position: relative;
+        display: flex
+    ;
+
+        .avatar {
+          width: 115px;
+          height: 115px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 8px solid $teal-50;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        .overlay mat-icon {
+          color: white;
+          font-size: 24px;
+        }
+
+        &:hover .overlay {
+          opacity: 1;
+        }
+
+      }
+
+
+    }
+
+    .user-info {
+      .user-name,
+      .user-email {
+        display: flex;
+        margin-top: 8px;
+        gap: 16px;
+      }
+
+      .user-name input,
+      .user-email input {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0;
+        color: $neutral-900;
+        border: none;
+        outline: none;
+        text-align: left;
+        background-color: transparent;
+        border-bottom: 2px solid $teal-50;
+        padding: 8px;
+        font-family: "Montserrat", sans-serif !important;
+        width: 50%;
+      }
+
+      .user-email {
+        margin-top: 22px;
+
+        input {
+          font-family: "Montserrat", sans-serif !important;
+          font-size: 14px;
+          color: $neutral-800;
+          padding: 4px;
+        }
+      }
+    }
+
+    .error-message p {
+      color: $error;
+      font-size: 12px;
+      text-align: left;
+      margin-top: 5px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      font-weight: 600;
+    }
+
+    .btn-save {
+      border-radius: 8px;
+      border: solid 2px $teal-50;
+      color: $teal-600;
+      width: 100%;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: "Montserrat", sans-serif !important;
+
+      mat-icon {
+        color: $teal-600;
+      }
+
+      &:hover {
+        background-color: $teal-20;
+      }
+    }
+  }
+
+  // Media Queries
+  /* (móviles) */
+  @media (max-width: 767px) {
+    .user-card {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .user-card {
+      width: 100%;
+    }
+  }
+}

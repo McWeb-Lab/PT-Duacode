@@ -22,10 +22,10 @@
       display: flex;
       flex-direction: row-reverse;
 
-      button{
+      button {
 
         mat-icon {
-          color: $teal-300
+          color: $teal-600
         }
 
         &:hover {
@@ -69,13 +69,14 @@
     .btn-edit {
       border-radius: 8px;
       border: solid 2px $teal-50;
-      color: $teal-300;
+      color: $teal-600;
       width: 100%;
       font-weight: 600;
       font-size: 14px;
+      font-family: 'Montserrat', sans-serif !important;
 
       mat-icon {
-        color: $teal-300;
+        color: $teal-600;
       }
 
       &:hover {

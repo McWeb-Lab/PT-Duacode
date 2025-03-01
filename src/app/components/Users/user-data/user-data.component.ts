@@ -4,10 +4,11 @@ import { UserService } from '../../../services/user.service';
 import { UserData } from '../../../models/user-model';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-user-data',
@@ -15,6 +16,7 @@ import {MatMenuModule} from '@angular/material/menu';
   styleUrls: ['./user-data.component.scss'],
   imports: [
       CommonModule,
+      RouterModule,
       MatCardModule,
       MatButtonModule,
       MatIconModule,
@@ -37,11 +39,13 @@ export class UserDataComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
-    private route: ActivatedRoute,
+    private activateRoute: ActivatedRoute,
+    private router: Router,
+    private _confirmDialogService: ConfirmDialogService
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.activateRoute.params.subscribe(params => {
       this.userId = +params['id'];
       this.getUserById(this.userId);
     });
@@ -56,14 +60,35 @@ export class UserDataComponent implements OnInit {
         console.error('Error getting user by ID:', error);
         this.openSnackBar('Error getting user by ID :(', 'Close');
       },
-      complete: () => {
-        console.log(this.user);
-      },
+    });
+  }
+
+  deleteUser(id: number): void {
+    const message = '¿Estás seguro de que deseas eliminar este usuario?';
+
+    this._confirmDialogService.openConfirmDialog(message).subscribe((result) => {
+      if (result) {
+        this._userService.deleteUser(id).subscribe({
+          next: () => {
+            this.openSnackBar('Usuario eliminado con éxito!', 'Close');
+            this.router.navigate(['/list']);
+          },
+          error: (error) => {
+            console.error('Error deleting user:', error);
+            this.openSnackBar('Hubo un error al eliminar el usuario :(', 'Close');
+          },
+          complete: () => {
+            this.router.navigate(['/list']);
+          },
+        });
+      } else {
+        console.log('Eliminación cancelada');
+      }
     });
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, {duration: 3000});
   }
 
 }
