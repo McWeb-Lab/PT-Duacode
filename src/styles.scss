@@ -6,12 +6,13 @@
   src: url('./assets/fonts/montserrat-regular.woff2') format('woff2');
 }
 html, body { height: 100%;
-  font-family: 'Montserrat', sans-serif !important; }
+  font-family: 'Montserrat'
+ }
 
 body {
   background-color: $neutral-20;
   margin: 0;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Montserrat';
  }
 
  //Estilo mat menu
@@ -42,7 +43,7 @@ body {
 :root {
   @include mat.button-overrides((
     container-shape: 8px,
-    outline-width: 2px,
+    outlined-outline-width: 2px,
     outlined-horizontal-padding: 50%,
     outlined-label-text-size: 14px,
     outlined-label-text-weight: 600
