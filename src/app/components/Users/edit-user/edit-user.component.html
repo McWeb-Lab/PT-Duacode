@@ -3,11 +3,14 @@
     <section>
       <mat-card-header>
         <div class="btn-options">
+          <button mat-icon-button (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu class="more-vert-menu" #menu="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item [routerLink]="['/new-user']">
               <mat-icon>add</mat-icon>
               <span>Nuevo usuario</span>
             </button>
@@ -18,16 +21,13 @@
         <form [formGroup]="userForm">
           <div class="avatar-container">
             <div class="avatar-wrapper">
-              <!-- Previsualizar la imagen con la ruta guardada -->
               <img *ngIf="user.avatar" [src]="user.avatar" class="avatar" />
               <div class="overlay">
-                <!-- Botón de editar avatar -->
                 <button mat-icon-button (click)="avatarInput.click()">
                   <mat-icon>edit</mat-icon>
                 </button>
               </div>
             </div>
-            <!-- Campo para seleccionar el archivo (solo almacenará la ruta como string) -->
             <input
               #avatarInput
               type="file"
@@ -101,7 +101,6 @@
       <mat-card-actions>
         <button
           mat-stroked-button
-          class="btn-save"
           type="submit"
           [disabled]="userForm.invalid"
           (click)="updateUser()"
