@@ -1,3 +1,108 @@
-<p>
-  new-user works!
-</p>
+
+<div class="data-user-wrapper">
+  <mat-card class="user-card">
+    <section>
+      <mat-card-header>
+        <div class="btn-options">
+          <button mat-icon-button (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="userForm">
+          <div class="avatar-container">
+            <div class="avatar-wrapper">
+              <img *ngIf="user.avatar" [src]="user.avatar" class="avatar" />
+              <div class="overlay">
+                <button mat-icon-button (click)="avatarInput.click()">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </div>
+            </div>
+            <!-- Campo para seleccionar el archivo (solo almacenará la ruta como string) -->
+            <input
+              #avatarInput
+              type="file"
+              (change)="onAvatarChange($event)"
+              hidden
+            />
+          </div>
+          <div class="user-info">
+            <div class="user-name">
+              <input
+                formControlName="first_name"
+                placeholder="First Name"
+                class="user-input"
+                [ngClass]="{
+                  invalid:
+                    userForm.controls['first_name'].invalid &&
+                    userForm.controls['first_name'].touched
+                }"
+              />
+              <input
+                formControlName="last_name"
+                placeholder="Last Name"
+                class="user-input"
+                [ngClass]="{
+                  invalid:
+                    userForm.controls['last_name'].invalid &&
+                    userForm.controls['last_name'].touched
+                }"
+              />
+            </div>
+            <p class="user-email">
+              <input
+                formControlName="email"
+                placeholder="Email"
+                class="user-input"
+                [ngClass]="{
+                  invalid:
+                    userForm.controls['email'].invalid &&
+                    userForm.controls['email'].touched
+                }"
+              />
+            </p>
+          </div>
+          <div
+            *ngIf="userForm.invalid && (userForm.dirty || userForm.touched)"
+            class="error-message"
+          >
+            <p *ngIf="userForm.controls['first_name'].hasError('required')">
+              *El nombre es obligatorio.
+            </p>
+            <p *ngIf="userForm.controls['first_name'].hasError('minlength')">
+              *El nombre debe tener al menos 2 caracteres
+            </p>
+            <p *ngIf="userForm.controls['last_name'].hasError('required')">
+              *El apellido es obligatorio.
+            </p>
+            <p *ngIf="userForm.controls['last_name'].hasError('minlength')">
+              *El apellido debe tener al menos 2 caracteres.
+            </p>
+            <p *ngIf="userForm.controls['email'].hasError('required')">
+              *El email es obligatorio.
+            </p>
+            <p *ngIf="userForm.controls['email'].hasError('email')">
+              *Introduce un email válido.
+            </p>
+          </div>
+        </form>
+      </mat-card-content>
+    </section>
+    <section>
+      <mat-card-actions>
+        <button
+          mat-stroked-button
+          class="btn-save"
+          type="submit"
+          [disabled]="userForm.invalid"
+          (click)="createUser()"
+        >
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+      </mat-card-actions>
+    </section>
+  </mat-card>
+</div>

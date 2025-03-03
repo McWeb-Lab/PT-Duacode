@@ -1,4 +1,4 @@
-@use "../../../../assets/colors.scss" as *;
+@use "../../../../assets/styles/colors.scss" as *;
 
 .data-user-wrapper {
   padding: 16px;
@@ -7,7 +7,7 @@
 
   .user-card {
     width: 30%;
-    height: 450px;
+    height: 550px;
     padding: 16px;
     margin-top: 16px;
     text-align: center;
@@ -17,28 +17,35 @@
     display: flex;
     justify-content: space-between;
 
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
     mat-card-header {
       padding: 0;
-      display: flex;
-      flex-direction: row-reverse;
 
-      button {
+      .btn-options {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        button {
+          mat-icon {
+            color: $teal-500;
+          }
 
-        mat-icon {
-          color: $teal-600
-        }
-
-        &:hover {
-          background-color: $teal-20;
+          &:hover {
+            background-color: $teal-20;
+          }
         }
       }
-
     }
 
     .avatar-container {
       display: flex;
       justify-content: center;
-      margin-bottom: 12px;
+      margin-bottom: 22px;
 
       .avatar {
         width: 115px;
@@ -58,29 +65,11 @@
       }
 
       .user-email {
-        font-size: 13px;
+        font-size: 14px;
         text-decoration: none;
         display: block;
         margin-top: 6px;
         color: $neutral-800;
-      }
-    }
-
-    .btn-edit {
-      border-radius: 8px;
-      border: solid 2px $teal-50;
-      color: $teal-600;
-      width: 100%;
-      font-weight: 600;
-      font-size: 14px;
-      font-family: 'Montserrat', sans-serif !important;
-
-      mat-icon {
-        color: $teal-600;
-      }
-
-      &:hover {
-        background-color: $teal-20;
       }
     }
   }

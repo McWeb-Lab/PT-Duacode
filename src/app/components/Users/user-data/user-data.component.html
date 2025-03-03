@@ -3,11 +3,14 @@
     <section>
       <mat-card-header>
         <div class="btn-options">
+          <button mat-icon-button (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu class="more-vert-menu" #menu="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item [routerLink]="['/new-user']">
               <mat-icon>add</mat-icon>
               <span>New user</span>
             </button>
@@ -30,7 +33,7 @@
     </section>
     <section>
       <mat-card-actions>
-        <button mat-stroked-button class="btn-edit" [routerLink]="['/edit-user', user.id]">
+        <button mat-stroked-button [routerLink]="['/edit-user', user.id]">
           <mat-icon>edit</mat-icon>
           Editar
         </button>
