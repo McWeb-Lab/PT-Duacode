@@ -8,7 +8,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
-import { ConfirmDialogService } from '../../../services/confirm-dialog.service';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-user-data',
@@ -41,7 +41,7 @@ export class UserDataComponent implements OnInit {
     private _userService: UserService,
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private _confirmDialogService: ConfirmDialogService
+    private _dialogService: DialogService
   ) {}
 
   ngOnInit() {
@@ -58,7 +58,7 @@ export class UserDataComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error getting user by ID:', error);
-        this.openSnackBar('Error getting user by ID :(', 'Close');
+        this.openSnackBar('Error al obtener el usuario por ID :(', 'Close');
       },
     });
   }
@@ -66,16 +66,15 @@ export class UserDataComponent implements OnInit {
   deleteUser(id: number): void {
     const message = '¿Estás seguro de que deseas eliminar este usuario?';
 
-    this._confirmDialogService.openConfirmDialog(message).subscribe((result) => {
+    this._dialogService.openConfirmDialog(message).subscribe((result) => {
       if (result) {
         this._userService.deleteUser(id).subscribe({
           next: () => {
             this.openSnackBar('Usuario eliminado con éxito!', 'Close');
-            this.router.navigate(['/list']);
           },
           error: (error) => {
             console.error('Error deleting user:', error);
-            this.openSnackBar('Hubo un error al eliminar el usuario :(', 'Close');
+            this.openSnackBar('Error al eliminar el usuario :(', 'Close');
           },
           complete: () => {
             this.router.navigate(['/list']);

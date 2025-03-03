@@ -43,9 +43,6 @@ export class ListComponent implements OnInit {
         console.error('Error getting users:', error);
         this.openSnackBar('Error getting users :(', 'Close')
       },
-      complete: () => {
-        console.log(this.users);
-      },
     });
   }
 
