@@ -2,15 +2,16 @@
 
 .list-wrapper {
   padding: 16px;
-  display:flex;
+  display: flex;
   justify-content: center;
 
   .card-list {
     gap: 5px;
     display: grid;
     padding: 16px;
+    padding-block: unset;
     width: 30%;
-    height: 550px;
+    height: 580px;
     overflow-y: auto;
 
     .user-card {

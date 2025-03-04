@@ -1,0 +1,35 @@
+@use "@angular/material" as mat;
+@use "../../../../assets/styles/colors.scss" as *;
+
+::ng-deep .error {
+  opacity: 0.8 !important;
+  @include mat.snack-bar-overrides(
+    (
+      container-color: $error,
+    )
+  );
+}
+
+::ng-deep .success {
+  opacity: 0.8 !important;
+  @include mat.snack-bar-overrides(
+    (
+      container-color: $success,
+    )
+  );
+}
+
+::ng-deep .warning {
+  opacity: 0.8 !important;
+  @include mat.snack-bar-overrides(
+    (
+      container-color: $warning,
+    )
+  );
+}
+
+span {
+  color: white;
+  font-weight: bold;
+  padding: 16px;
+}

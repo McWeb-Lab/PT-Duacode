@@ -12,7 +12,12 @@ import {
   selector: 'app-simple-dialog',
   templateUrl: './simple-dialog.component.html',
   styleUrls: ['./simple-dialog.component.css'],
-  imports: [MatDialogActions, MatDialogContent, MatDialogModule, MatButtonModule],
+  imports: [
+    MatDialogActions,
+    MatDialogContent,
+    MatDialogModule,
+    MatButtonModule,
+  ],
 })
 export class SimpleDialogComponent {
   constructor(

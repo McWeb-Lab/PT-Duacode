@@ -1,51 +1,58 @@
 @use "./assets/styles/colors.scss" as *;
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('./assets/fonts/montserrat-regular.woff2') format('woff2');
+  font-family: "Montserrat";
+  src: url("./assets/fonts/montserrat-regular.woff2") format("woff2");
 }
-html, body { height: 100%;
-  font-family: 'Montserrat'
- }
+html,
+body {
+  height: 100%;
+  font-family: "Montserrat";
+  overflow: hidden;
+}
 
 body {
   background-color: $neutral-20;
   margin: 0;
-  font-family: 'Montserrat';
- }
-
- //Estilo mat menu
-.more-vert-menu {
-  @include mat.menu-overrides((
-    item-icon-size: 18px,
-    item-label-text-size: 14px,
-    item-label-text-color: $teal-600,
-    item-icon-color: $teal-600,
-    container-shape: 8px,
-    container-elevation-shadow: 0,
-    container-color: $teal-20,
-    item-hover-state-layer-color: $teal-50
-  ));
-
+  font-family: "Montserrat";
 }
 
+//Estilo mat menu
+.more-vert-menu {
+  @include mat.menu-overrides(
+    (
+      item-icon-size: 18px,
+      item-label-text-size: 14px,
+      item-label-text-color: $teal-600,
+      item-icon-color: $teal-600,
+      container-shape: 8px,
+      container-elevation-shadow: 0,
+      container-color: $teal-20,
+      item-hover-state-layer-color: $teal-50,
+    )
+  );
+}
 
 // Estilos dialog
 :root {
-  @include mat.dialog-overrides((
-    container-shape: 8px,
-    container-elevation-shadow: 0
-  ));
+  @include mat.dialog-overrides(
+    (
+      container-shape: 8px,
+      container-elevation-shadow: 0,
+    )
+  );
 }
 
 // Estilos mat-button
 :root {
-  @include mat.button-overrides((
-    container-shape: 8px,
-    outlined-outline-width: 2px,
-    outlined-horizontal-padding: 50%,
-    outlined-label-text-size: 14px,
-    outlined-label-text-weight: 600
-  ));
+  @include mat.button-overrides(
+    (
+      container-shape: 8px,
+      outlined-outline-width: 2px,
+      outlined-horizontal-padding: 50%,
+      outlined-label-text-size: 14px,
+      outlined-label-text-weight: 600,
+    )
+  );
 }

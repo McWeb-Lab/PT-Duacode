@@ -6,8 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-list',
@@ -20,21 +20,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatTooltipModule,
     MatButtonModule,
     RouterModule,
-
   ],
 })
 export class ListComponent implements OnInit {
   users: UserData[] = [];
   totalUsers = 0;
-  pageSize = 6;  // Cantidad de usuarios por carga
-  pageIndex = 0; // Página actual
-  private _snackBar = inject(MatSnackBar);
+  pageSize = 6;
+  pageIndex = 0;
 
-  constructor(private _userService: UserService) {}
+  constructor(
+    private _userService: UserService,
+    private _dialogService: DialogService
+  ) {}
 
   ngOnInit() {
     this.getAllUsers();
-    this._userService.users$.subscribe(users => {
+    this._userService.users$.subscribe((users) => {
       this.users = users;
     });
   }
@@ -47,7 +48,10 @@ export class ListComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error getting users:', error);
-        this.openSnackBar('Error al obtener el listado de usuarios :(', 'Close')
+        this._dialogService.showSnackBar(
+          'Error al obtener el listado de usuarios :(',
+          'error'
+        );
       },
     });
   }
@@ -55,9 +59,5 @@ export class ListComponent implements OnInit {
   loadMoreUsers() {
     this.pageIndex++;
     this.getAllUsers();
-  }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {duration: 3000});
   }
 }

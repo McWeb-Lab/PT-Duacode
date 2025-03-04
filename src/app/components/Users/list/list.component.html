@@ -14,8 +14,19 @@
         </div>
       </div>
     </mat-card>
-    <button class="btn-load-more" *ngIf="users.length < totalUsers" mat-button (click)="loadMoreUsers()">Cargar más... ( {{users.length}} de {{totalUsers}} )</button>
-    <button [routerLink]="['/new-user']" matTooltip="Crear nuevo usuario" mat-button>
+    <button
+      class="btn-load-more"
+      *ngIf="users.length < totalUsers"
+      mat-button
+      (click)="loadMoreUsers()"
+    >
+      Cargar más... ( {{ users.length }} de {{ totalUsers }} )
+    </button>
+    <button
+      [routerLink]="['/new-user']"
+      matTooltip="Crear nuevo usuario"
+      mat-button
+    >
       <mat-icon>add</mat-icon>
     </button>
   </div>

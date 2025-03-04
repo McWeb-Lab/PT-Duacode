@@ -4,7 +4,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { UserData } from '../../../models/user-model';
 import { MatCardModule } from '@angular/material/card';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -36,8 +35,6 @@ export class UserDataComponent implements OnInit {
 
   userId: number = 0;
 
-  private _snackBar = inject(MatSnackBar);
-
   constructor(
     private _userService: UserService,
     private location: Location,
@@ -59,11 +56,17 @@ export class UserDataComponent implements OnInit {
         this.user = response.data;
       },
       error: (error) => {
-        console.error('Error getting user by ID:', error);
-        this.openSnackBar('Error al obtener el usuario por ID :(', 'Close');
-        alert(
-          'Aquí recuperaría el usuario correctamente, pero entiendo que al no crearlo realmente en la API, no encuentra el id :)'
-        );
+        if (this.userId == 0) {
+          this._dialogService.openSimpleDialog(
+            'Aquí recuperaría el usuario correctamente, pero entiendo que al no crearlo realmente en la API, no encuentra el id :)'
+          );
+        } else {
+          console.error('Error getting user by ID:', error);
+          this._dialogService.showSnackBar(
+            'Error al obtener el usuario por ID :(',
+            'error'
+          );
+        }
       },
     });
   }
@@ -75,11 +78,17 @@ export class UserDataComponent implements OnInit {
       if (result) {
         this._userService.deleteUser(id).subscribe({
           next: () => {
-            this.openSnackBar('Usuario eliminado con éxito!', 'Close');
+            this._dialogService.showSnackBar(
+              'Usuario eliminado con éxito!',
+              'success'
+            );
           },
           error: (error) => {
             console.error('Error deleting user:', error);
-            this.openSnackBar('Error al eliminar el usuario :(', 'Close');
+            this._dialogService.showSnackBar(
+              'Error al eliminar el usuario :(',
+              'error'
+            );
           },
           complete: () => {
             this.router.navigate(['/list']);
@@ -89,10 +98,6 @@ export class UserDataComponent implements OnInit {
         console.log('Eliminación cancelada');
       }
     });
-  }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, { duration: 3000 });
   }
 
   goBack() {

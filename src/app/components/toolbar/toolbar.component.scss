@@ -1,13 +1,9 @@
 @use "../../../assets/styles/colors.scss" as *;
 
 mat-toolbar {
-
-  .custom-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .icon-home {
+    margin-right: 16px;
   }
-
   .spacer {
     flex: 1 1 auto;
   }
@@ -19,7 +15,19 @@ mat-toolbar {
       color: $duacode;
       font-weight: 600;
     }
+
+    a {
+      text-decoration: none;
+    }
   }
 
-}
+  @media (max-width: 414px) {
+    span {
+      font-size: 11px;
+    }
 
+    .custom-icons {
+      display: none;
+    }
+  }
+}
