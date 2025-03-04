@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UserData } from '../models/user-model';
 
 @Injectable({
@@ -8,8 +8,6 @@ import { UserData } from '../models/user-model';
 })
 export class UserService {
   private apiUrl = 'https://reqres.in/api/users';
-  private usersSubject = new BehaviorSubject<any[]>([]);
-  users$ = this.usersSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
