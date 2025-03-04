@@ -3,13 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserData } from '../models/user-model';
 
-// Servicio para el CRUD con la API
-
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  // URL base de la API
   private apiUrl = 'https://reqres.in/api/users';
   private usersSubject = new BehaviorSubject<any[]>([]);
   users$ = this.usersSubject.asObservable();
@@ -17,7 +14,9 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUsers(page: number, perPage: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?page=${page}&per_page=${perPage}`);
+    return this.http.get<any>(
+      `${this.apiUrl}?page=${page}&per_page=${perPage}`
+    );
   }
 
   getUserById(id: number): Observable<UserData> {

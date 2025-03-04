@@ -1,0 +1,33 @@
+@use "../../../assets/styles/colors.scss" as *;
+
+mat-toolbar {
+  .icon-home {
+    margin-right: 16px;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  span {
+    font-size: 14px;
+    &.dc {
+      font-size: 16px;
+      color: $duacode;
+      font-weight: 600;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: 414px) {
+    span {
+      font-size: 11px;
+    }
+
+    .custom-icons {
+      display: none;
+    }
+  }
+}

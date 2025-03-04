@@ -2,12 +2,12 @@
 
 .data-user-wrapper {
   padding: 16px;
-  display:flex;
+  display: flex;
   justify-content: center;
 
   .user-card {
     width: 30%;
-    height: 550px;
+    height: 580px;
     padding: 16px;
     margin-top: 16px;
     text-align: center;
@@ -74,7 +74,7 @@
     }
   }
 
-    // Media Queries
+  // Media Queries
   /* (móviles) */
   @media (max-width: 767px) {
     // (Móviles)
