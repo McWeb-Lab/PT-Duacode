@@ -35,9 +35,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllUsers();
-    this._userService.users$.subscribe((users) => {
-      this.users = users;
-    });
   }
 
   getAllUsers(): void {
